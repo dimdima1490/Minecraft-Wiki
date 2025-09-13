@@ -10,11 +10,52 @@
     />
   </head>
   <body>
-  <h1>Minecraft Wiki</h1>
+    <h1>Minecraft Wiki</h1>
+    <div class="objects">
+      <h1 class="add" id="addButton">Додати</h1>
+      <h1 class="remove" id="removeButton">Видалити</h1>
+    </div>
 
-  <div id="menu" class="menu" aria-label="Меню разделов"></div>
-  <main id="content" class="container" aria-live="polite"></main>
+    <div id="menu" class="menu" aria-label="Меню разделов"></div>
+    <main id="content" class="container" aria-live="polite"></main>
 
-  <script src="script.js"></script>
+    <!-- Модальное окно для добавления -->
+    <div id="addModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Додати новий елемент</h2>
+        <form id="addForm">
+          <label for="category">Категорія:</label>
+          <select id="category" required>
+            <option value="Предмети">Предмети</option>
+            <option value="Блоки">Блоки</option>
+            <option value="Музика">Музика</option>
+          </select>
+          
+          <label for="title">Назва:</label>
+          <input type="text" id="title" required>
+          
+          <label for="desc">Опис:</label>
+          <textarea id="desc" required></textarea>
+          
+          <label for="img">URL зображення (необов'язково):</label>
+          <input type="url" id="img">
+          
+          <button type="submit">Додати</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Модальное окно для удаления -->
+    <div id="removeModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Видалити елемент</h2>
+        <p>Оберіть елемент для видалення:</p>
+        <div id="removeItemsList"></div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
   </body>
 </html>
