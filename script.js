@@ -1,4 +1,4 @@
-let data = {
+let data = JSON.parse(localStorage.getItem('minecraftData')) || {
     "Предмети": [
         { title: "Незеритовий Меч", desc: "Меч із Незериту", img: "https://minecraft-max.net/upload/iblock/53a/j5802gmx2ilbl2lbpcl5cn814u3qb0d0.png" },
         { title: "Незеритовий Злиток", desc: "Накладається на алмазні предмети", img: "https://minecraft-max.net/upload/iblock/e4c/aovgcda3v5vyep6vygxx4cb9mojqvoht.png" },
@@ -10,32 +10,50 @@ let data = {
         { title: "Глазурована кераміка", desc: "Декоративний блок", img: "data:image/png;base64,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" }
     ],
     "Музика": [
-        { title: "Moog City 2", desc: "C418 — музыка меню", img: "" },
-        { title: "Pigstep", desc: "Lena Raine — пластинка", img: "" }
+        { title: "Moog City 2", desc: "C418 — музика меню", },
+        { title: "Pigstep", desc: "Lena Raine — пластинка", }
     ]
 };
 
+// Сохранение данных в localStorage
+function saveData() {
+    localStorage.setItem('minecraftData', JSON.stringify(data));
+}
+
 const menuEl = document.getElementById('menu');
 const contentEl = document.getElementById('content');
-
+const addButton = document.getElementById('addButton');
+const removeButton = document.getElementById('removeButton');
+const addModal = document.getElementById('addModal');
+const removeModal = document.getElementById('removeModal');
+const addForm = document.getElementById('addForm');
+const removeItemsList = document.getElementById('removeItemsList');
+const closeButtons = document.querySelectorAll('.close');
 
 const categories = Object.keys(data);
 const buttons = [];
 
-categories.forEach((cat, idx) => {
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'menu-button';
-    btn.textContent = cat;
+// Инициализация
+function init() {
+    categories.forEach((cat, idx) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'menu-button';
+        btn.textContent = cat;
 
-    btn.addEventListener('click', () => {
-        setActiveButton(btn);
-        renderCategory(cat);
+        btn.addEventListener('click', () => {
+            setActiveButton(btn);
+            renderCategory(cat);
+        });
+        menuEl.appendChild(btn);
+        buttons.push(btn);
     });
-    menuEl.appendChild(btn);
-    buttons.push(btn);
-});
 
+    if(buttons.length){
+        setActiveButton(buttons[0]);
+        renderCategory(categories[0]);
+    }
+}
 
 function setActiveButton(activeBtn){
     buttons.forEach(b => {
@@ -49,15 +67,15 @@ function setActiveButton(activeBtn){
     });
 }
 
-
 function renderCategory(category){
-
     while(contentEl.firstChild) contentEl.removeChild(contentEl.firstChild);
 
     const items = data[category] || [];
     items.forEach((it, i) => {
         const card = document.createElement('article');
         card.className = 'card';
+        card.dataset.category = category;
+        card.dataset.index = i;
 
         card.style.animationDelay = (i * 0.08) + 's';
 
@@ -83,7 +101,6 @@ function renderCategory(category){
         contentEl.appendChild(card);
     });
 
-
     if(items.length === 0){
         const note = document.createElement('p');
         note.textContent = 'Пока тут нет контента.';
@@ -92,8 +109,102 @@ function renderCategory(category){
     }
 }
 
+// Обработчики модальных окон
+addButton.addEventListener('click', () => {
+    addModal.style.display = 'block';
+});
 
-if(buttons.length){
-    setActiveButton(buttons[0]);
-    renderCategory(categories[0]);
-}  
+removeButton.addEventListener('click', () => {
+    removeModal.style.display = 'block';
+    populateRemoveList();
+});
+
+closeButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        addModal.style.display = 'none';
+        removeModal.style.display = 'none';
+    });
+});
+
+window.addEventListener('click', (e) => {
+    if (e.target == addModal) {
+        addModal.style.display = 'none';
+    }
+    if (e.target == removeModal) {
+        removeModal.style.display = 'none';
+    }
+});
+
+// Обработчик формы добавления
+addForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const category = document.getElementById('category').value;
+    const title = document.getElementById('title').value;
+    const desc = document.getElementById('desc').value;
+    const img = document.getElementById('img').value;
+    
+    if (!data[category]) {
+        data[category] = [];
+    }
+    
+    data[category].push({ title, desc, img });
+    saveData();
+    
+    // Обновляем отображение, если текущая категория совпадает
+    const activeCategory = document.querySelector('.menu-button.active').textContent;
+    if (activeCategory === category) {
+        renderCategory(category);
+    }
+    
+    addForm.reset();
+    addModal.style.display = 'none';
+    
+    alert('Елемент успішно додано!');
+});
+
+// Заполнение списка для удаления
+function populateRemoveList() {
+    removeItemsList.innerHTML = '';
+    
+    for (const category in data) {
+        data[category].forEach((item, index) => {
+            const div = document.createElement('div');
+            div.className = 'remove-item';
+            
+            const text = document.createElement('span');
+            text.textContent = `${category}: ${item.title}`;
+            
+            const button = document.createElement('button');
+            button.className = 'remove-btn';
+            button.textContent = 'Видалити';
+            button.addEventListener('click', () => {
+                removeItem(category, index);
+            });
+            
+            div.appendChild(text);
+            div.appendChild(button);
+            removeItemsList.appendChild(div);
+        });
+    }
+}
+
+// Удаление элемента
+function removeItem(category, index) {
+    if (confirm('Ви впевнені, що хочете видалити цей елемент?')) {
+        data[category].splice(index, 1);
+        saveData();
+        
+        // Обновляем отображение, если текущая категория совпадает
+        const activeCategory = document.querySelector('.menu-button.active').textContent;
+        if (activeCategory === category) {
+            renderCategory(category);
+        }
+        
+        populateRemoveList();
+        alert('Елемент успішно видалено!');
+    }
+}
+
+// Инициализация при загрузке страницы
+document.addEventListener('DOMContentLoaded', init);
