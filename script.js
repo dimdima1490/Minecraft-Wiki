@@ -1,6 +1,6 @@
 let data = {
     "Предмети": [
-        { title: "Алмазний Меч", desc: "Меч із алмазів", img: "https://static.wikia.nocookie.net/minecraft-mojang/images/f/f0/%D0%9A%D1%80%D0%B0%D1%84%D1%82_%D0%B0%D0%BB%D0%BC%D0%B0%D0%B7%D0%BD%D0%BE%D0%B3%D0%BE_%D0%BC%D0%B5%D1%87%D0%B0.jpg" },
+        { title: "Незеритовий Меч", desc: "Меч із Незериту", img: "https://minecraft-max.net/upload/iblock/53a/j5802gmx2ilbl2lbpcl5cn814u3qb0d0.png" },
         { title: "Незеритовий Злиток", desc: "Накладається на алмазні предмети", img: "https://minecraft-max.net/upload/iblock/e4c/aovgcda3v5vyep6vygxx4cb9mojqvoht.png" },
         { title: "Золоте яблуко", desc: "Їжа з ефектами", img: "https://minecraft-max.net/upload/iblock/1db/1db7c8bd8c072c2d27a52df3bd5b1919.png" }
     ],
