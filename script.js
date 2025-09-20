@@ -1,3 +1,20 @@
+const music = new Audio("music/game-minecraft-gaming-background-music-402451.mp3");
+music.loop = true; 
+music.play();
+
+const btn = document.getElementById("music-btn");
+let isPlaying = true;
+
+btn.addEventListener("click", () => {
+  if (isPlaying) {
+    music.pause();
+    btn.textContent = "🔇";
+  } else {
+    music.play();
+    btn.textContent = "🎵";
+  }
+  isPlaying = !isPlaying;
+});
 let data = JSON.parse(localStorage.getItem('minecraftData')) || {
     "Предмети": [
         { title: "Незеритовий Меч", desc: "Меч із Незериту", img: "https://minecraft-max.net/upload/iblock/53a/j5802gmx2ilbl2lbpcl5cn814u3qb0d0.png" },
@@ -208,3 +225,5 @@ function removeItem(category, index) {
 
 // Инициализация при загрузке страницы
 document.addEventListener('DOMContentLoaded', init);
+
+
